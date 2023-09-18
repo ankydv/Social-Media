@@ -5,8 +5,8 @@ import  Entypo  from 'react-native-vector-icons/Entypo';
 import  AntDesign  from 'react-native-vector-icons/AntDesign';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 
-import HomeScreen from './Screens/HomeScreen';
-import ProfileScreen from './Screens/ProfileScreen';
+import HomeScreen from './Screens/HomeScreen/HomeScreen';
+import ProfileScreen from './Screens/ProfileScreen/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
