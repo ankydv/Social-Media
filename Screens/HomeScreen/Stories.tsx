@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, Image, StyleSheet, Text} from 'react-native';
 import { globalVars } from '../../styles';
-// import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Stories = (): JSX.Element => {
 
@@ -23,29 +23,22 @@ const Stories = (): JSX.Element => {
 const StoryCard = ({obj} : {obj:any}): JSX.Element => {
   return (
     <View style={styles.storyCard}>
-        {/* <LinearGradient
-        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.5)']}
+        <LinearGradient
+        colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)',]}
         style={styles.gradient}
-      > */}
+        start={{ x: 0, y: 0.5 }} end={{ x: 0, y: 1 }}
+      >
       <Image
         source={{
           uri: obj.url,
         }}
-        style={{height: 170, width: 95}}></Image>
-        
-        {/* <StoryCardOverlay /> */}
-      {/* </LinearGradient> */}
+        style={{height: 170, width: '100%', zIndex: -1}}></Image>
+      </LinearGradient>
         <Image source={{uri: obj.dp }} style={styles.icon}></Image>
         <Text style={styles.txtName}>{obj.name}</Text>
     </View>
   );
 };
-
-// const StoryCardOverlay = () => {
-//     return (
-//         <View style={styles.overlay} />
-//     );
-//   };
 
 const styles = StyleSheet.create({
   storyCard: {
@@ -53,13 +46,10 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 95,
     height: 170,
-    // aspectRatio: 1/2,
     marginRight: 5,
     marginLeft: 5,
     borderRadius: 15,
     overflow: 'hidden',
-    // borderBottomRightRadius: 0,
-    // borderTopLeftRadius: 0,
   },
   storiesContainer: {
     margin: 10,
@@ -78,18 +68,12 @@ const styles = StyleSheet.create({
   },
   txtName:{
     position: 'absolute', 
-    color: 'black',
-    bottom: 0,
+    color: globalVars.colors.white,
+    bottom: 8,
+    left: 8,
+
 },
-// overlay: {
-//     position: 'absolute',
-//     bottom: 0,
-//     left: 0,
-//     right: 0,
-//     backgroundColor: 'black', // Set the overlay color to black
-//     height: 100, // Adjust the height as needed
-//     // opacity: 0.5,
-//   },
+
 });
 
 export default Stories;

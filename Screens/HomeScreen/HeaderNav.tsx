@@ -7,7 +7,7 @@ const HeaderNav = () => {
       <View style={styles.headerNav}>
         <Text style={[{fontSize: 25}, globalStyles.txt]}>GenZocial</Text>
           <View style={styles.topRight}>
-          <Feather name='search' size={35} color={globalVars.colors.danger}></Feather>
+          {/* <Feather name='search' size={35} color={globalVars.colors.danger}></Feather> */}
           {/* <TextInput placeholderTextColor={'black'} placeholder='Search For Posts, Creators...' style={styles.search} /> */}
           <TouchableOpacity style={styles.btn}>
             <Text style={{color: 'white', fontSize: 18}}>Create</Text>
@@ -31,8 +31,7 @@ const HeaderNav = () => {
       padding: 5,
       height: 60,
       elevation: 5,
-      backgroundColor: 'black',
-      // gap: 22,
+      backgroundColor: globalVars.colors.white,
       
     },
     image: {
