@@ -4,12 +4,14 @@ import { StyleSheet } from 'react-native';
 import HeaderNav from './HeaderNav';
 import Stories from './Stories';
 import { globalStyles } from '../../styles';
+import CreatePost from './CreatePost';
 
 function HomeScreen():JSX.Element {
   return (
     <SafeAreaView style={[styles.container, globalStyles.body]}>
       <HeaderNav></HeaderNav>
       <Stories />
+      <CreatePost/>
     </SafeAreaView>
   );
 }

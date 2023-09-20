@@ -24,7 +24,17 @@ export const globalStyles = StyleSheet.create({
         color: globalVars.colors.dark,
         backgroundColor: globalVars.colors.light,
         fontFamily: 'Poppins',
-    }
+    },
+    btn: {
+      backgroundColor: globalVars.colors.danger,
+      width: 100,
+      height: 40,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 30,
+      borderBottomRightRadius: 4,
+
+    },
   })
 
 // export default globalVars;

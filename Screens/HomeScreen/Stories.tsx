@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Image, StyleSheet, Text} from 'react-native';
+import {View, ScrollView, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import { globalVars } from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -12,20 +12,21 @@ const Stories = (): JSX.Element => {
   })
 
   return (
-    <ScrollView style={styles.storiesContainer} horizontal>
+    <View style={styles.storiesContainer}>
+    <ScrollView  horizontal showsHorizontalScrollIndicator={false}>
       {arr.map((e, index) => (
           <StoryCard obj={e} />
         ))}
     </ScrollView>
+    </View>
   );
 };
 
 const StoryCard = ({obj} : {obj:any}): JSX.Element => {
   return (
-    <View style={styles.storyCard}>
+    <TouchableOpacity style={styles.storyCard}>
         <LinearGradient
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.7)',]}
-        style={styles.gradient}
         start={{ x: 0, y: 0.5 }} end={{ x: 0, y: 1 }}
       >
       <Image
@@ -36,7 +37,7 @@ const StoryCard = ({obj} : {obj:any}): JSX.Element => {
       </LinearGradient>
         <Image source={{uri: obj.dp }} style={styles.icon}></Image>
         <Text style={styles.txtName}>{obj.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -53,8 +54,6 @@ const styles = StyleSheet.create({
   },
   storiesContainer: {
     margin: 10,
-    flex: 1,
-    gap: 2,
   },
   icon: {
     position: 'absolute',
