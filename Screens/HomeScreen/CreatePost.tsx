@@ -7,8 +7,8 @@ const CreatePost = ():JSX.Element => {
   return (
     <View style={styles.createPost}>
         <ProfilePic/>
-        <TextInput style={styles.txtInput}></TextInput>
-        <TouchableOpacity style={globalStyles.btn}>
+        <TextInput placeholder={`What's on your mind Lana?`} style={styles.txtInput}></TextInput>
+        <TouchableOpacity style={[globalStyles.btn,{width: 80}]}>
             <Text style={{color: 'white', fontSize: 18}}>Post</Text>
         </TouchableOpacity>
     </View>
@@ -17,23 +17,23 @@ const CreatePost = ():JSX.Element => {
 
 const styles = StyleSheet.create({
     createPost: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        backgroundColor: globalVars.colors.white,
         alignItems: 'center',
-        // height: 40,
-        // margin: 7,
-        // paddingVertical: 4,
-        // paddingHorizontal: 50,
+        margin: 7,
+        paddingHorizontal: '2%',
+        paddingVertical: 4,
+        borderRadius: 20,
     },
     txtInput: {
-      // borderWidth: 2, 
-      backgroundColor: globalVars.colors.white,
+      flex: 1,
+      paddingLeft: 5,
+      marginLeft: 10,
+      marginRight: 10,
+      backgroundColor: 'transparent',
+      color: globalVars.colors.dark,
       height: 50, 
-      width: '50%',
-      paddingHorizontal: 50,
-      left: -50,
-      zIndex: -5,
       
       
     }

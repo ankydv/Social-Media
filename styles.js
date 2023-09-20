@@ -32,7 +32,6 @@ export const globalStyles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 30,
-      borderBottomRightRadius: 4,
 
     },
   })
