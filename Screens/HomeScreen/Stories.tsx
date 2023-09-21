@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, ScrollView, Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions} from 'react-native';
 import { globalVars } from '../../styles';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -33,7 +33,7 @@ const StoryCard = ({obj} : {obj:any}): JSX.Element => {
         source={{
           uri: obj.url,
         }}
-        style={{height: 170, width: '100%', zIndex: -1}}></Image>
+        style={{height: '100%', width: '100%', zIndex: -1}}></Image>
       </LinearGradient>
         <Image source={{uri: obj.dp }} style={styles.icon}></Image>
         <Text style={styles.txtName}>{obj.name}</Text>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   storyCard: {
     position: 'relative',
     flex: 1,
-    width: 95,
+    width:85,
     height: 170,
     marginRight: 5,
     marginLeft: 5,
