@@ -11,7 +11,7 @@ export const globalVars ={
         gray: 'hsl(252, 15%, 65%)',
         primary: 'hsl(252, 75%, 60%)',
         secondary: 'hsl(252, 100%, 90%)',
-        success: 'hsl(120, 95%, 65%)',
+       success: 'hsl(120, 95%, 65%)',
         black: 'hsl(252, 95%, 10%)',
     }
 }
