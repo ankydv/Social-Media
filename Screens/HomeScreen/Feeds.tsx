@@ -5,13 +5,13 @@ import ProfilePic from './ProfilePic';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-// import {
-//   Canvas,
-//   Fill,
-//   BackdropBlur,
-//   ColorMatrix,
-//   useImage,
-// } from "@shopify/react-native-skia";
+import {
+  Canvas,
+  Fill,
+  BackdropBlur,
+  ColorMatrix,
+  useImage,
+} from '@shopify/react-native-skia';
 
 const Feeds = (): JSX.Element => {
   return (
@@ -77,20 +77,25 @@ const Feed = () => {
         <ImageSwiper />
       </View>
       <View style={styles.feedBottom}>
-      {/* <BackdropBlur blur={4} clip={{ x: 0, y: 128, width: 256, height: 128 }}>
-        <Fill color="rgba(0, 0, 0, 0.2)" />
-       */}
-          <View style={styles.feedBottomActions}>
-            <MaterialCommunityIcons
-              name="heart-multiple-outline"
-              size={30}
-              color={globalVars.colors.danger}
-            />
-            <Ionicons name="chatbubbles-outline" size={30} />
-            <FontAwesome name="send-o" size={30} />
-          </View>
-          {/* </BackdropBlur> */}
-      
+        <View style={styles.feedBottomActions}>
+          <MaterialCommunityIcons
+            name="heart-multiple-outline"
+            size={30}
+            color={globalVars.colors.danger}
+          />
+          <Ionicons name="chatbubbles-outline" size={30} />
+          <FontAwesome name="send-o" size={30} />
+
+          {/* <Canvas style={{width: 256, height: 256}}>
+            <BackdropBlur
+              blur={4}
+              clip={{x: 0, y: 12, width: 256, height: 128}}>
+              <Fill color="rgba(0, 0, 0, 0.2)" />
+            </BackdropBlur>
+          </Canvas> */}
+        </View>
+    
+
         <Ionicons name="bookmarks-outline" size={30} />
       </View>
       <View style={styles.feedFooter}>
@@ -212,7 +217,7 @@ const styles = StyleSheet.create({
     top: -50,
     padding: 5,
     borderRadius: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)'
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
   },
 
   feedFooter: {
