@@ -7,7 +7,7 @@ const ProfileScreen = () => {
   return (
     <>
       <Carousel />
-      <HeartFloater />
+      {/* <HeartFloater /> */}
     </>
   );
 };

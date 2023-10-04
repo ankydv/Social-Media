@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ViewBase,
 } from 'react-native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Foundation from 'react-native-vector-icons/Foundation';
+import HeartFloater from './HeartShape';
 
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 
@@ -61,7 +61,7 @@ const slideList = [
   },
 ];
 
-function Pagination({index}) {
+function Pagination({index} : {index:number}) {
   // console.warn(index)
   return (
     <View style={styles.pagination} pointerEvents="none">
@@ -85,8 +85,9 @@ function Pagination({index}) {
 export default function Carousel() {
   const [tapCount, setTapCount] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const heartRef = useRef(null);
 
-  function Slide({data}) {
+  function Slide({data} : {data:any}) {
     // console.warn(data)
     const handleDoubleTap = () => {
       setTapCount(tapCount + 1);
@@ -94,6 +95,8 @@ export default function Carousel() {
       if (tapCount === 1) {
         setTapCount(0);
         setIsLiked((prev) => !prev);
+        if(heartRef.current && !isLiked)
+          heartRef.current.addHeart();
         return;
       } else {
         setTimeout(() => {
@@ -106,6 +109,7 @@ export default function Carousel() {
         <View style={styles.slide}>
           <Image source={{uri: data.image}} style={styles.slideImage} />
         </View>
+       
       </TouchableOpacity>
     );
   }
@@ -115,7 +119,7 @@ export default function Carousel() {
 
   indexRef.current = index;
 
-  const onScroll = event => {
+  const onScroll = (event: { nativeEvent: { layoutMeasurement: { width: any; }; contentOffset: { x: number; }; }; }) => {
     const slideSize = event.nativeEvent.layoutMeasurement.width;
     const index = event.nativeEvent.contentOffset.x / slideSize;
     const roundIndex = Math.round(index);
@@ -135,8 +139,8 @@ export default function Carousel() {
     removeClippedSubviews: true,
     scrollEventThrottle: 16,
     windowSize: 2,
-    keyExtractor: item => String(item.id),
-    getItemLayout: (_, index) => ({
+    keyExtractor: (item: { id: any; }) => String(item.id),
+    getItemLayout: (_: any, index: number) => ({
       index,
       length: windowWidth,
       offset: index * windowWidth,
@@ -171,6 +175,7 @@ export default function Carousel() {
           size={20}
         />
       )}
+       <HeartFloater ref={heartRef} />
       <Pagination index={index} />
     </>
   );

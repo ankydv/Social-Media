@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   StyleSheet,
+  Text,
 } from 'react-native';
 import Foundation from 'react-native-vector-icons/Foundation';
 
@@ -32,20 +33,34 @@ const Heart = ({style}: HeartProps): ReactElement => {
     <View {...{style}}>
       {/* <View style={styles.heartShape} />
       <View style={styles.heartShapeFilled} /> */}
-
       <Foundation
         name="heart"
-        style={{color: 'red', position: 'absolute', top: 7, right: 15}}
+        style={{color: 'red', position: 'relative', top: 24, right: 5}}
         size={20}
       />
-            <Foundation
+      <Foundation
         name="heart"
-        style={{color: 'red', position: 'absolute', top: 5, right: 5}}
+        style={{color: 'red', position: 'relative', top: 18, left: 2}}
         size={20}
       />
-            <Foundation
+      <Foundation
         name="heart"
-        style={{color: 'red', position: 'relative'}}
+        style={{color: 'red', position: 'relative', top: 12, left: 20}}
+        size={20}
+      />
+      <Foundation
+        name="heart"
+        style={{color: 'red', position: 'relative', top: 10, right: 10}}
+        size={20}
+      />
+      <Foundation
+        name="heart"
+        style={{color: 'red', position: 'relative', top: 6, right: 25}}
+        size={20}
+      />
+      <Foundation
+        name="heart"
+        style={{color: 'red', position: 'relative', top: 2, left: 15}}
         size={20}
       />
     </View>
@@ -115,7 +130,7 @@ const AnimatedHeart = ({
   );
 };
 
-const HeartFloater = (): ReactElement => {
+const HeartFloater = React.forwardRef((props, ref:any) => {
   const [hearts, setHearts] = useState<{id: number; right: number}[]>([]);
 
   const addHeart = () => {
@@ -132,10 +147,12 @@ const HeartFloater = (): ReactElement => {
   const removeHeart = (id: number) => {
     setHearts(prevHearts => prevHearts.filter(heart => heart.id !== id));
   };
+  React.useImperativeHandle(ref, () => ({
+    addHeart
+  }));
 
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={addHeart}>
         <View style={styles.container}>
           {hearts.map((heart, index) => (
             <AnimatedHeart
@@ -145,10 +162,9 @@ const HeartFloater = (): ReactElement => {
             />
           ))}
         </View>
-      </TouchableWithoutFeedback>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
