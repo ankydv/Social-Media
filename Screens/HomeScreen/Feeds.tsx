@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, PanResponder} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  PanResponder,
+  FlatList,
+} from 'react-native';
 import {globalStyles, globalVars} from '../../styles';
 import ProfilePic from './ProfilePic';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {
-  Canvas,
-  Fill,
-  BackdropBlur,
-  ColorMatrix,
-  useImage,
-} from '@shopify/react-native-skia';
+import {Dimensions} from 'react-native';
+import Carousel from '../HomeScreen/Carousel';
+
+
+const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
+
 
 const Feeds = (): JSX.Element => {
   return (
@@ -73,30 +77,7 @@ const Feed = () => {
         />
       </View>
       <View>
-        {/* <Image source={{uri: 'https://plus.unsplash.com/premium_photo-1687186954188-76f7f4a3d829?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2lybHN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60'}} style = {{width: '100%', aspectRatio: 1}} /> */}
-        <ImageSwiper />
-      </View>
-      <View style={styles.feedBottom}>
-        <View style={styles.feedBottomActions}>
-          <MaterialCommunityIcons
-            name="heart-multiple-outline"
-            size={30}
-            color={globalVars.colors.danger}
-          />
-          <Ionicons name="chatbubbles-outline" size={30} />
-          <FontAwesome name="send-o" size={30} />
-
-          {/* <Canvas style={{width: 256, height: 256}}>
-            <BackdropBlur
-              blur={4}
-              clip={{x: 0, y: 12, width: 256, height: 128}}>
-              <Fill color="rgba(0, 0, 0, 0.2)" />
-            </BackdropBlur>
-          </Canvas> */}
-        </View>
-    
-
-        <Ionicons name="bookmarks-outline" size={30} />
+      <Carousel />
       </View>
       <View style={styles.feedFooter}>
         <StackedAvatars />
@@ -137,53 +118,6 @@ const StackedAvatars = () => {
   );
 };
 
-const ImageSwiper = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const images = [
-    {
-      uri: 'https://images.unsplash.com/photo-1694445083738-1e1f6104e9e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-    },
-    {
-      uri: 'https://images.unsplash.com/photo-1682687982093-4773cb0dbc2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-    },
-    {
-      uri: 'https://plus.unsplash.com/premium_photo-1674326713056-e458f42535fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNnx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-    },
-  ];
-
-  const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: () => true,
-    onMoveShouldSetPanResponder: (evt, gestureState) => {
-      // Disable vertical gesture by only allowing horizontal gesture
-      return Math.abs(gestureState.dx) > Math.abs(gestureState.dy);
-    },
-    onPanResponderMove: (evt, gestureState) => {
-      // Swipe left
-      if (gestureState.dx < -50) {
-        const nextIndex = currentIndex + 1;
-        if (nextIndex < images.length) {
-          setCurrentIndex(nextIndex);
-        }
-      }
-      // Swipe right
-      else if (gestureState.dx > 50) {
-        const prevIndex = currentIndex - 1;
-        if (prevIndex >= 0) {
-          setCurrentIndex(prevIndex);
-        }
-      }
-    },
-    onPanResponderRelease: () => {},
-  });
-
-  return (
-    <View {...panResponder.panHandlers}>
-      <Image source={images[currentIndex]} style={styles.image} />
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   feedContainer: {
     width: '100%',
@@ -203,22 +137,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
     marginTop: -6,
   },
-  feedBottom: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 7,
-    marginVertical: 7,
-  },
-  feedBottomActions: {
-    flex: 0.4,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    top: -50,
-    padding: 5,
-    borderRadius: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-  },
+  // feedBottom: {
+  //   flex: 1,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   paddingHorizontal: 7,
+  //   marginVertical: 7,
+  // },
+  // feedBottomActions: {
+  //   flex: 0.4,
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   top: -50,
+  //   padding: 5,
+  //   borderRadius: 25,
+  //   backgroundColor: 'rgba(255, 255, 255, 0.2)',
+  // },
 
   feedFooter: {
     flexDirection: 'row',
@@ -263,4 +197,5 @@ const styles = StyleSheet.create({
     bottom: -15,
     zIndex: 999,
   },
+
 });
