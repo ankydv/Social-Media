@@ -1,21 +1,15 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  PanResponder,
-  FlatList,
-} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 import {globalStyles, globalVars} from '../../styles';
 import ProfilePic from './ProfilePic';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
+
 import {Dimensions} from 'react-native';
 import Carousel from '../HomeScreen/Carousel';
 
-
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
-
 
 const Feeds = (): JSX.Element => {
   return (
@@ -77,12 +71,16 @@ const Feed = () => {
         />
       </View>
       <View>
-      <Carousel />
+        <Carousel />
       </View>
       <View style={styles.feedFooter}>
         <StackedAvatars />
         <View>
           <Text style={styles.avatarTxt}> and 696969 others</Text>
+        </View>
+        <View style={styles.footerActions}>
+          <Ionicons name="chatbubble-outline" size={30} color={globalVars.colors.black}/>
+          <Feather name="share" size={30} color={globalVars.colors.black}/>
         </View>
       </View>
       <View style={styles.footerDesc}>
@@ -158,7 +156,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
-    paddingHorizontal: 7,
+    paddingLeft: 7,
+    paddingRight: 20,
+    paddingVertical:5,
+
+  },
+  footerActions:{
+    flexDirection: 'row',
+    right:0,
+    flex:1,
+    justifyContent:"flex-end",
+  gap:30
   },
   avatarTxt: {
     color: globalVars.colors.black,
@@ -191,11 +199,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   feedUploader: {
-    borderWidth: 3,
+    borderWidth: 1.5,
     borderRadius: 35,
-    borderColor: 'pink',
+    borderColor: globalVars.colors.white,
     bottom: -15,
     zIndex: 999,
   },
-
 });

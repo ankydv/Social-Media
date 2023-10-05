@@ -1,9 +1,13 @@
 import * as React from 'react';
-import Navigation from './Navigation'
+import Navigation from './Navigation';
+import {StatusBar} from 'react-native';
 
 function App() {
   return (
-    <Navigation/>
+    <>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+      <Navigation />
+    </>
   );
 }
 

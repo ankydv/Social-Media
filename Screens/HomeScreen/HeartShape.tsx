@@ -130,10 +130,12 @@ const AnimatedHeart = ({
   );
 };
 
+
+
 const HeartFloater = React.forwardRef((props, ref:any) => {
   const [hearts, setHearts] = useState<{id: number; right: number}[]>([]);
 
-  const addHeart = () => {
+  const addHeart = ():void => {
     startCount += 1;
     setHearts(prevHearts => [
       ...prevHearts,
