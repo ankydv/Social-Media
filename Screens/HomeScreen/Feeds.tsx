@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import {globalStyles, globalVars} from '../../styles';
 import ProfilePic from './ProfilePic';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,22 +11,22 @@ import Carousel from '../HomeScreen/Carousel';
 
 const {width: windowWidth, height: windowHeight} = Dimensions.get('window');
 
-const Feeds = (): JSX.Element => {
+const Feeds = ({onCommentTrigger}: {onCommentTrigger: any}): JSX.Element => {
   return (
     <View style={styles.feedsContainer}>
-      <Feed />
-      <Feed />
-      <Feed />
-      <Feed />
-      <Feed />
-      <Feed />
+      <Feed onCommentTrigger={onCommentTrigger} />
+      <Feed onCommentTrigger={onCommentTrigger} />
+      <Feed onCommentTrigger={onCommentTrigger} />
+      <Feed onCommentTrigger={onCommentTrigger} />
+      <Feed onCommentTrigger={onCommentTrigger} />
+      <Feed onCommentTrigger={onCommentTrigger} />
     </View>
   );
 };
 
 export default Feeds;
 
-const Feed = () => {
+const Feed = ({onCommentTrigger}: {onCommentTrigger: any}) => {
   return (
     <View style={styles.feedContainer}>
       <View style={styles.feedHeader}>
@@ -83,12 +83,14 @@ const Feed = () => {
           <Text style={styles.avatarTxt}> and 696969 others</Text>
         </View>
         <View style={styles.footerActions}>
-          <Ionicons
-            name="chatbubble-outline"
-            size={30}
-            color={globalVars.colors.danger}
-          />
-  
+          <TouchableOpacity onPress={onCommentTrigger}>
+            <Ionicons
+              name="chatbubble-outline"
+              size={30}
+              color={globalVars.colors.danger}
+            />
+          </TouchableOpacity>
+
           <Feather name="share" size={30} color={globalVars.colors.danger} />
         </View>
       </View>
@@ -184,8 +186,7 @@ const styles = StyleSheet.create({
   footerDesc: {
     marginBottom: 10,
     paddingHorizontal: 10,
-    paddingTop:7,
-
+    paddingTop: 7,
   },
   image: {
     width: '100%',
