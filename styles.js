@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 export const globalVars ={
     colors: {
-        danger: '#fb5151',
+        danger: 'hsl(240, 70.4%, 70%)',
         dark: 'hsl(254, 30%, 17%)',
         light: 'hsl(252, 30%, 95%)',
         white: 'hsl(252, 30%, 100%)',

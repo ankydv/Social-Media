@@ -16,6 +16,10 @@ const Feeds = (): JSX.Element => {
     <View style={styles.feedsContainer}>
       <Feed />
       <Feed />
+      <Feed />
+      <Feed />
+      <Feed />
+      <Feed />
     </View>
   );
 };
@@ -79,8 +83,13 @@ const Feed = () => {
           <Text style={styles.avatarTxt}> and 696969 others</Text>
         </View>
         <View style={styles.footerActions}>
-          <Ionicons name="chatbubble-outline" size={30} color={globalVars.colors.black}/>
-          <Feather name="share" size={30} color={globalVars.colors.black}/>
+          <Ionicons
+            name="chatbubble-outline"
+            size={30}
+            color={globalVars.colors.danger}
+          />
+  
+          <Feather name="share" size={30} color={globalVars.colors.danger} />
         </View>
       </View>
       <View style={styles.footerDesc}>
@@ -158,15 +167,14 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingLeft: 7,
     paddingRight: 20,
-    paddingVertical:5,
-
+    paddingVertical: 5,
   },
-  footerActions:{
+  footerActions: {
     flexDirection: 'row',
-    right:0,
-    flex:1,
-    justifyContent:"flex-end",
-  gap:30
+    right: 0,
+    flex: 1,
+    justifyContent: 'flex-end',
+    gap: 30,
   },
   avatarTxt: {
     color: globalVars.colors.black,
@@ -175,7 +183,9 @@ const styles = StyleSheet.create({
   },
   footerDesc: {
     marginBottom: 10,
-    paddingHorizontal: 7,
+    paddingHorizontal: 10,
+    paddingTop:7,
+
   },
   image: {
     width: '100%',
