@@ -27,28 +27,22 @@ function HomeScreen(): JSX.Element {
   };
 
   return (
-    <TouchableWithoutFeedback
-      style={{backgroundColor: 'red'}}
-      onPress={closeCommentModal}>
-      <View style={[styles.container, globalStyles.body]}>
-        <ScrollView stickyHeaderIndices={[0]} stickyHeaderHiddenOnScroll={true}>
-          <HeaderNav></HeaderNav>
-          <Stories />
-          <CreatePost />
-          <Feeds onCommentTrigger={openCommentModal} />
-        </ScrollView>
+    <View style={[styles.container, globalStyles.body]}>
+      <ScrollView stickyHeaderIndices={[0]} stickyHeaderHiddenOnScroll={true}>
+        <HeaderNav></HeaderNav>
+        <Stories />
+        <CreatePost />
+        <Feeds onCommentTrigger={openCommentModal} />
+      </ScrollView>
 
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={isCommentModalVisible}
-          onRequestClose={closeCommentModal}>
-          {/* <TouchableWithoutFeedback style={{backgroundColor: 'red'}}> */}
-            <CommentModal onClose={closeCommentModal} />
-          {/* </TouchableWithoutFeedback> */}
-        </Modal>
-      </View>
-    </TouchableWithoutFeedback>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isCommentModalVisible}
+        onRequestClose={closeCommentModal}>
+        <CommentModal onClose={closeCommentModal} />
+      </Modal>
+    </View>
   );
 }
 
